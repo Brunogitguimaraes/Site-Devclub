@@ -1,0 +1,173 @@
+/*
+  DevClub landing — dark, electric-green, editorial tech theme.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Expanded:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 150 8% 4%;
+    --foreground: 0 0% 98%;
+    --card: 150 8% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 150 8% 5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 145 90% 52%;
+    --primary-foreground: 150 20% 5%;
+    --secondary: 150 6% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 150 6% 12%;
+    --muted-foreground: 150 5% 62%;
+    --accent: 145 90% 52%;
+    --accent-foreground: 150 20% 5%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 150 8% 16%;
+    --input: 150 8% 16%;
+    --ring: 145 90% 52%;
+    --radius: 0.5rem;
+
+    --dc-green: 145 90% 52%;
+    --dc-blue: 210 100% 60%;
+    --dc-yellow: 48 100% 60%;
+    --dc-ink: 150 8% 4%;
+  }
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Archivo", system-ui, sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: "Archivo Expanded", "Archivo", sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+}
+
+.font-mono {
+  font-family: "JetBrains Mono", monospace;
+}
+
+::selection {
+  background: hsl(var(--dc-green));
+  color: hsl(var(--dc-ink));
+}
+
+/* Grid / circuit background utility */
+.dc-grid {
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.5) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.dc-radial-glow {
+  background: radial-gradient(60% 60% at 50% 40%, hsl(var(--dc-green) / 0.14), transparent 70%);
+}
+
+.text-glow {
+  text-shadow: 0 0 24px hsl(var(--dc-green) / 0.45);
+}
+
+.dc-scrollbar-none::-webkit-scrollbar { display: none; }
+.dc-scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes dc-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.dc-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: dc-marquee 32s linear infinite;
+}
+
+@keyframes dc-pulse-dot {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+@keyframes hero-firework-burst {
+  0% {
+    transform: scale(0.15);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  45% {
+    transform: scale(1.1);
+    opacity: 0.95;
+  }
+  70% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-firework-particle-float {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(calc(-1 * var(--distance))) scale(0.2);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(calc(-1 * var(--distance) * 2.4)) scale(0.28);
+    opacity: 0;
+  }
+}
+
+.hero-firework-group {
+  position: absolute;
+  width: 0.1rem;
+  height: 0.1rem;
+  animation: hero-firework-burst 2.8s ease-out infinite;
+}
+
+.hero-firework-particle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.15rem;
+  height: 0.7rem;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(123, 255, 188, 0.95) 35%, rgba(0, 255, 120, 0.15));
+  box-shadow: 0 0 10px hsl(var(--dc-green) / 0.7);
+  opacity: 0;
+  animation: hero-firework-particle-float 2.8s ease-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .dc-marquee-track { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.dc-cursor-none * { cursor: none !important; }

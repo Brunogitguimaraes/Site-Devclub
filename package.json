@@ -1,0 +1,21 @@
+{
+	"name": "monorepo",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"setup": "npm install",
+		"dev": "npm --workspace web run dev",
+		"build": "npm --workspace web run build",
+		"start": "node server.js",
+		"lint": "npm --workspace web run lint"
+	},
+	"devDependencies": {
+		"concurrently": "^10.0.3"
+	},
+	"workspaces": [
+		"apps/*"
+	],
+	"dependencies": {
+		"express": "^5.2.1"
+	}
+}

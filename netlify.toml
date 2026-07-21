@@ -1,0 +1,6 @@
+[build]
+  command = "npm --workspace web run build"
+  publish = "dist/apps/web"
+
+[build.environment]
+  NODE_VERSION = "22"
