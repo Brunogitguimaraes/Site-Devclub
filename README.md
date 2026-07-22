@@ -1,3 +1,10 @@
+## 🎨 Preview
+
+### Desktop/Mobile
+<div align="center">
+  <img src=".github/assets/DevClub-img.png" alt="DevClub Hero Desktop" width="100%" style="border-radius: 8px; margin: 20px 0;">
+</div>
+
 # DevClub
 
 Landing page do DevClub construída com React, Vite e Tailwind CSS. O projeto usa um monorepo leve: a aplicação web fica em `apps/web` e o build de produção é centralizado em `dist/apps/web`.
